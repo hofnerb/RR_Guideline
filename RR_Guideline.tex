@@ -121,6 +121,12 @@ Please prepare your (code) submission as follows:
   \end{itemize}
 \item Read other files, such as the function definitions, into the main file
   (e.g., using \texttt{source()} in \textsf{R}).
+\item Make sure that the results are easy to compare with the manuscript:
+  \begin{itemize}
+  \item Add comments that state what figure / table the code produces.
+  \item Structure your output such that it corresponds to the structure of the
+    table given in the manuscript.
+  \end{itemize}
 \item Avoid absolute paths (e.g., \verb+C:/My Code+) whenever possible. Use
   paths relative to the current file instead. If this is impossible state in
   your README where/how to change the paths.
@@ -141,6 +147,12 @@ Please prepare your (code) submission as follows:
   documentation of user written functions and arguments therein.
 \item all the data to reproduce all the results, images and tables.
 \end{itemize}
+\item If the code needs more time to run (say longer than 2h), consider to add
+  intermediate results in a separate folder. Keep the main folder clean so that
+  usually the code is run without using the intermediate results. For an example
+  of the structure see Section~\ref{sec:structure}. Please state in the README
+  how to use the intermediate results (e.g. ``Copy the intermediate results to
+  the folder ...'').
 \item If the data is confidential, authors should consider to use simulated data
   that mimics (the main features of) the real data and produces similar results.
 \item Simulations and everything else that relies on random numbers / random
@@ -184,7 +196,7 @@ Please prepare your (code) submission as follows:
   \end{itemize}
 \end{itemize}
 
-\subsection{Structure of Submission (ZIP-folder)}
+\subsection{Structure of Submission (ZIP-folder)}\label{sec:structure}
 
 Code, data and the README {must} be contained in a single zip container,
 possibly with sub-folders in the container for different purposes. E.g.\ one
