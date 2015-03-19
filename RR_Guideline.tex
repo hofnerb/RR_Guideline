@@ -1,0 +1,281 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[authoryear]{natbib}
+\usepackage[dvips]{epsfig}
+\usepackage{dcolumn}
+\usepackage{enumerate}
+\usepackage{hhline}
+\usepackage{dsfont}
+\usepackage{textcomp}
+\usepackage{lineno}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{rotating}
+\usepackage[colorlinks=TRUE,urlcolor=blue,citecolor=blue,linkcolor=black]{hyperref}
+\usepackage{multirow}
+\usepackage{natbib}
+
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\large\bfseries}
+\titleformat*{\subsubsection}{\bfseries}
+
+\sloppy
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0em}
+
+\setlength{\paperheight}{29.7cm}
+\setlength{\paperwidth}{21cm}
+
+\setlength{\textheight}{23cm}
+\setlength{\textwidth}{15.5cm}
+
+\setlength{\headheight}{0cm}
+\setlength{\headsep}{0cm}
+\setlength{\topskip}{0cm}
+ 
+\setlength{\topmargin}{0cm}
+\setlength{\oddsidemargin}{0cm}
+
+\makeatletter
+\renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
+  \begin{flushleft}
+    \vspace*{10cm}
+    \textbf{\Large \@title}\\[1em]
+
+    \@author\\[0.5em]
+
+    \textbf{Document Version:} \@date
+    \vspace{2em}
+  \end{flushleft}\egroup
+}
+\makeatother
+
+% \title{Biometrical Journal -- Guideline for code submissions\\[-0.5em]}
+
+\title{%Appendix A:\\
+  Specific Guidance on Reproducible Research (RR)\\[0.2em]
+  \large Guideline for Code Submissions}
+
+\author{Benjamin Hofner (RR Editor, Biometrical Journal)\\
+  E-mail: \href{mailto:benjamin.hofner@fau.de}{benjamin.hofner@fau.de}} 
+
+\date{1.4 (2015/03/xx)}
+
+\begin{document}
+
+\maketitle
+
+%\vspace{6cm}
+
+\tableofcontents
+
+\newpage 
+
+\setlength{\parskip}{0.2em}
+
+\section*{Why do we support reproducible research (RR)?}
+\begin{itemize}
+\item Code (and data) makes it easier (or even possible) to reproduce the results
+  and thus facilitates understanding of the methods and results.
+\item Code helps to promote the results and methods of the article.
+\item Good code adds to the precision of the description of methods and results
+  and thus improves the article.
+\item Code facilitates communication with other researches who intend to apply
+  the proposed methods.
+\end{itemize}
+
+%\newpage
+\setcounter{section}{0}
+
+\section{Submission Material}
+
+Please prepare your (code) submission as follows:
+
+\subsection{Code and Data}
+
+\begin{itemize}
+\item The code {must} be well documented.
+\item Each user-defined function {must} be documented (including all
+  function arguments).
+\item Unnecessary comments (such as alternative code lines) {should} be
+  avoided.
+\item Please indent for your code properly. 
+  \begin{itemize}
+  \item If you plan to provide \textsf{R} code and use RStudio
+    (\href{http://www.rstudio.com/products/rstudio/download/}{Download}), proper
+    indention can be easily achieved by selecting everything (\texttt{CRTL-A})
+    and then typing \texttt{CTRL-I} (re-indent lines).
+  \end{itemize}
+\item Try to put the code in as few code files as possible\footnote{But use
+    separate files where useful and sensible, e.g., one for the function
+    definitions, one for the simulation study and another for the data
+    analysis.}.
+  \begin{itemize}
+  \item Do not use seperate files for each function, but do structure the code
+    files properly using comments for each "section" (unless you use, e.g.,
+    \textsf{MATLAB} where one file per function is required).
+  \end{itemize}
+\item Read other files, such as the function definitions, into the main file
+  (e.g., using \texttt{source()} in \textsf{R}).
+\item Avoid absolute paths (e.g., \verb+C:/My Code+) whenever possible. Use
+  paths relative to the current file instead. If this is impossible state in
+  your README where/how to change the paths.
+  \begin{itemize}
+  \item   In \textsf{R} absolute paths are not necessary (unless in come very rare
+    occasions). If you really want to set or change your working directory do this
+    only once, at the very beginning of your master code file.
+  \item In \textsf{SAS} one can either define a macro variable that contains the
+    relevant path and use this wherever the path is needed or one needs to
+    clearly state in the README which path needs to be replaced in which files.
+  \end{itemize}
+\item Each submission {should} contain:
+\begin{itemize}
+\item all the code to reproduce all the results, images and tables. Make sure
+  that the code submitted is complete and covers all calculuations used in the
+  finally published paper (and only these). Make also sure the code is well
+  documented. This especially includes (but is not restricted to) the
+  documentation of user written functions and arguments therein.
+\item all the data to reproduce all the results, images and tables.
+\end{itemize}
+\item If the data is confidential, authors should consider to use simulated data
+  that mimics (the main features of) the real data and produces similar results.
+\item Simulations and everything else that relies on random numbers / random
+  samples {must} use a seed to make the results reproducible (in \textsf{R} use
+  \texttt{set.seed(...)}).
+\item Make sure that the code can be executed without the need of alterations by
+  the user. If user input is really needed, please state and explain this in the
+  README.
+\end{itemize}
+
+\subsection{README}
+
+\begin{itemize}
+\item Each code submission {must} be accompanied by a \texttt{README.txt} or a
+  \texttt{README.pdf} file that must contain:
+  \begin{itemize}
+  \item the title of the manuscript
+  \item the authors of the manuscript
+  \item if one or more than one of the authors were the main contributors/producers
+    of the code name them. If other persons collaborated substantially in the
+    establishment of the code and are not authors of the paper name them and
+    achnowledge them in the paper.
+  \item one e-mail address such that readers can approach that person for
+    questions, comments and remarks (and to report bugs).
+  \item a list of configurations on which you tested your code [software,
+    software version (incl. package versions), platform]. In \textsf{R} you can
+    use the output from \texttt{sessionInfo()} at the end of your code, i.e.,
+    after all packages have been loaded.
+  \item a specification of special hardware or software requirements (if
+    applicable).
+  \end{itemize}
+  \item The README
+  \begin{itemize}
+  \item explains how to execute the code (e.g., Which program was used? In which
+    order should the files be executed? What are the results obtained by the
+    file? Add flowcharts when they appear helpful.)
+  \item (if applicable) explains what the data represents, i.e., the type and
+    meaning of all data which are used in the code. You may refer to
+    tables/sections in the paper.
+  \item state the source of the data.
+  \end{itemize}
+\end{itemize}
+
+\subsection{Structure of Submission (ZIP-folder)}
+
+Code, data and the README {must} be contained in a single zip container,
+possibly with sub-folders in the container for different purposes. E.g.\ one
+could have the following structure
+
+\begin{verbatim}
+    README.txt
+    \case_study
+        ..\code
+        ..\data
+    \simulation
+        ..\intermediate_results
+\end{verbatim}
+
+A special folder for the code might not be necessary. The README should be
+placed in the top level of the zip file (see example above). Make sure that the
+code can be directly executed after unpacking the file without any need to alter
+the code.
+
+\section{Submission Process}
+
+Please use the appropriate mode of submission:
+
+\begin{itemize}
+\item \textbf{When you submit your paper:}\\[0.5em]
+  When your paper suits the RR option of the Biometrical Journal you are
+  invited to submit code and data already at the first submission of the
+  manuscript. Please upload the zip file on Manuscript Central as "Data and
+  Software".
+\item \textbf{During the review process:}\\[0.5em]
+  You may be asked during the review process to submit code and data or to
+  change them in the case of initial submission. Then please upload the zip file
+  on Manuscript Central as "Data and Software".
+\item \textbf{After (conditional) acceptance:}\\[0.5em]
+  Please send the code to the RR Editor
+  (\href{mailto:benjamin.hofner@fau.de}{benjamin.hofner@fau.de}). If the
+  manuscript was changed please send also the manuscript (incl. sources) per
+  email. If the files are too large to be emailed please inform the RR Editor
+  who will give further instructions on how to proceed. All files will be
+  uploaded to Manuscript Central at the end of the RR check.
+\end{itemize}
+
+If any questions on the submission process arise please contact the RR Editor
+and keep the Editor in cc.
+
+% There should be new last section for contacting persons which should contain the
+% e-mail for direct communication with the RR-Editor, but also the recommendation
+% to communicate within ScholarOne with the RR-editor where admin ( Monika) is
+% automatic in cc. As long as this option is not implmented we can only say that
+% authors can contact the RR-editor directly.
+
+\section{Reference the code}
+
+Please refer to the code in the submitted manuscript where appropriate, for
+example in the section of the data analysis and/or in the section where the
+simulation study or a numerical study are described. You can do this for example
+as follows:
+\begin{quote}
+  ``Source code to reproduce the results is available as Supporting Information
+  on the journal's web page (\url{http://onlinelibrary.wiley.com/doi/xxx/suppinfo}).''
+\end{quote}
+
+If the Supporting Information contains several files you may list them
+explicitly such that the reader (of the electronic version) can navigate through
+the Supporting Information. The links will be set by the publisher.
+
+\section{Example}
+
+A good example is given by W. Sauerbrei, A. Buchholz, A.-L. Boulesteix \& H.
+Binder (see \url{http://onlinelibrary.wiley.com/enhanced/doi/10.1002/bimj.201300222/}).
+
+
+\section{Possible improvements}
+
+To further simplify and enhance reproducibility of results, submissions using
+\href{http://en.wikipedia.org/wiki/Literate_Programming}{literate programming}
+approaches to combine \LaTeX and \textsf{R} code such as
+\href{http://en.wikipedia.org/wiki/Sweave}{Sweave}
+\citep{Leisch:2002,Leisch:2003}/
+\href{http://en.wikipedia.org/wiki/Knitr}{knitr} \citep{Xie:2013,Xie:2014}/...
+are encouraged. Please also supply an \textsf{R} code file in that case.
+
+Authors of papers that use multiple user-specified functions coded in \textsf{R}
+are encouraged to provide an \textsf{R} package (which can be, but does not
+necessarily has to be, hosted on \href{http://cran.r-project.org/}{CRAN} or
+\href{http://bioconductor.org/}{Bioconductor}).
+
+%\clearpage
+
+\bibliographystyle{plain}
+\bibliography{bib}
+
+\end{document}
+
