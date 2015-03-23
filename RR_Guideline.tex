@@ -99,28 +99,33 @@ Please prepare your (code) submission as follows:
 
 \begin{itemize}
 \item The code {must} be well documented.
-\item Each user-defined function {must} be documented (including all
-  function arguments).
+\item Each user-defined function (\textsf{Stata}: program) {must} be documented
+  (including all function arguments; \textsf{Stata}: options).
 \item Unnecessary comments (such as alternative code lines) {should} be
   avoided.
-\item Please indent for your code properly. 
+\item Please indent for your code properly. Usually 2 or 4 spaces per indention
+  level are a good choice. Keep that indention style throughout your document.
   \begin{itemize}
-  \item If you plan to provide \textsf{R} code and use RStudio
+  \item \textsf{R}: If you use RStudio
     (\href{http://www.rstudio.com/products/rstudio/download/}{Download}), proper
     indention can be easily achieved by selecting everything (\texttt{CRTL-A})
-    and then typing \texttt{CTRL-I} (re-indent lines).
+    and then typing \texttt{CTRL-I} (re-indent lines). 
+  \item \textsf{Stata}: use tab-indention (which defaults to 4 spaces).
   \end{itemize}
-\item Try to put the code in as few code files as possible\footnote{But use
-    separate files where useful and sensible, e.g., one for the function
-    definitions, one for the simulation study and another for the data
-    analysis.}.
+\item Try to put the code in as few code files as possible but use separate
+  files where useful and sensible, e.g., one for the function definitions, one
+  for the simulation study and another for the data analysis.
   \begin{itemize}
-  \item Do not use seperate files for each function, but do structure the code
-    files properly using comments for each "section" (unless you use, e.g.,
-    \textsf{MATLAB} where one file per function is required).
+  \item \textsf{R}, \textsf{Stata}, etc.: Do not use separate files for each function,
+    but do structure the code files properly using comments for each "section".
+  \item \textsf{MATLAB}: use one file per function.
   \end{itemize}
-\item Read other files, such as the function definitions, into the main file
-  (e.g., using \texttt{source()} in \textsf{R}).
+\item Read other files, such as the function definitions, into the main file:
+  \begin{itemize}
+  \item \textsf{R}: use \texttt{source()}.
+  \item \textsf{Stata}: use \texttt{do}.
+  \item \textsf{SAS}: use \texttt{\%include}.
+  \end{itemize}
 \item Make sure that the results are easy to compare with the manuscript:
   \begin{itemize}
   \item Add comments that state what figure / table the code produces.
@@ -131,9 +136,10 @@ Please prepare your (code) submission as follows:
   paths relative to the current file instead. If this is impossible state in
   your README where/how to change the paths.
   \begin{itemize}
-  \item   In \textsf{R} absolute paths are not necessary (unless in come very rare
-    occasions). If you really want to set or change your working directory do this
-    only once, at the very beginning of your master code file.
+  \item In \textsf{R} and \textsf{Stata} absolute paths are not necessary
+    (unless in some very rare occasions). If you really want to set or change
+    your working directory do this only once, at the very beginning of your
+    master code file.
   \item In \textsf{SAS} one can either define a macro variable that contains the
     relevant path and use this wherever the path is needed or one needs to
     clearly state in the README which path needs to be replaced in which files.
@@ -149,17 +155,17 @@ Please prepare your (code) submission as follows:
   documentation of user written functions and arguments therein.
 \item all the data to reproduce all the results, images and tables.
 \end{itemize}
-\item If the code needs more time to run (say longer than 2h), consider to add
+\item If the code needs more time to run (say longer than 2h), consider adding
   intermediate results in a separate folder. Keep the main folder clean so that
   usually the code is run without using the intermediate results. For an example
   of the structure see Section~\ref{sec:structure}. Please state in the README
   how to use the intermediate results (e.g. ``Copy the intermediate results to
   the folder ...'').
-\item If the data is confidential, authors should consider to use simulated data
+\item If the data is confidential, authors should consider using simulated data
   that mimics (the main features of) the real data and produces similar results.
 \item Simulations and everything else that relies on random numbers / random
   samples {must} use a seed to make the results reproducible (in \textsf{R} use
-  \texttt{set.seed(...)}).
+  \texttt{set.seed(...)}; in Stata use \texttt{set seed \#}).
 \item Make sure that the code can be executed without the need of alterations by
   the user. If user input is really needed, please state and explain this in the
   README.
@@ -180,9 +186,13 @@ Please prepare your (code) submission as follows:
   \item one e-mail address such that readers can approach that person for
     questions, comments and remarks (and to report bugs).
   \item a list of configurations on which you tested your code [software,
-    software version (incl. package versions), platform]. In \textsf{R} you can
-    use the output from \texttt{sessionInfo()} at the end of your code, i.e.,
-    after all packages have been loaded.
+    software version (incl. package versions), platform].
+    \begin{itemize}
+    \item In \textsf{R} you can use the output from \texttt{sessionInfo()} at
+      the end of your code, i.e., after all packages have been loaded.
+    \item In \textsf{Stata} report the version number and perhaps the flavour
+      you are using (see \texttt{Help > About Stata}).
+    \end{itemize}
   \item a specification of special hardware or software requirements (if
     applicable).
   \end{itemize}
@@ -207,10 +217,11 @@ could have the following structure
 \begin{verbatim}
     README.txt
     \case_study
-        ..\code
-        ..\data
+        .\data
+        case_study.R
     \simulation
-        ..\intermediate_results
+        .\intermediate_results
+        simulation.R
 \end{verbatim}
 
 A special folder for the code might not be necessary. The README should be
@@ -235,7 +246,7 @@ Please use the appropriate mode of submission:
 \item \textbf{After (conditional) acceptance:}\\[0.5em]
   Please send the code to the RR Editor
   (\href{mailto:benjamin.hofner@fau.de}{benjamin.hofner@fau.de}). If the
-  manuscript was changed please send also the manuscript (incl. sources) per
+  manuscript was changed please send also the manuscript (incl. sources) by
   email. If the files are too large to be emailed please inform the RR Editor
   who will give further instructions on how to proceed. All files will be
   uploaded to Manuscript Central at the end of the RR check.
@@ -279,7 +290,10 @@ approaches to combine \LaTeX and \textsf{R} code such as
 \href{http://en.wikipedia.org/wiki/Sweave}{Sweave}
 \citep{Leisch:2002,Leisch:2003}/
 \href{http://en.wikipedia.org/wiki/Knitr}{knitr} \citep{Xie:2013,Xie:2014}/...
-are encouraged. Please also supply an \textsf{R} code file in that case.
+are encouraged. Please also supply an \textsf{R} code file in that case. For
+\textsf{SAS} and \textsf{Stata} there exists a similar package for dynamic
+documents called
+\href{http://homepage.stat.uiowa.edu/~rlenth/StatWeave/}{StatWeave}.
 
 Authors of papers that use multiple user-specified functions coded in \textsf{R}
 are encouraged to provide an \textsf{R} package (which can be, but does not
