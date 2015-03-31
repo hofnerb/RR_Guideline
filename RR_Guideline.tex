@@ -36,14 +36,14 @@
 \setlength{\headheight}{0cm}
 \setlength{\headsep}{0cm}
 \setlength{\topskip}{0cm}
- 
+
 \setlength{\topmargin}{0cm}
 \setlength{\oddsidemargin}{0cm}
 
 \makeatletter
 \renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
   \begin{flushleft}
-    \vspace*{10cm}
+    \vspace*{3cm}
     \textbf{\Large \@title}\\[1em]
 
     \@author\\[0.5em]
@@ -54,26 +54,25 @@
 }
 \makeatother
 
-% \title{Biometrical Journal -- Guideline for code submissions\\[-0.5em]}
-
-\title{%Appendix A:\\
-  Specific Guidance on Reproducible Research (RR)\\[0.2em]
+\title{Specific Guidance on Reproducible Research (RR)\\[0.2em]
   \large Guideline for Code Submissions}
 
 \author{Benjamin Hofner (RR Editor, Biometrical Journal)\\
-  E-mail: \href{mailto:benjamin.hofner@fau.de}{benjamin.hofner@fau.de}} 
+  E-mail: \href{mailto:benjamin.hofner@fau.de}{benjamin.hofner@fau.de}}
 
-\date{1.4 (2015/03/xx)}
+\date{1.4 (2015/04/xx)}
 
 \begin{document}
 
 \maketitle
 
-%\vspace{6cm}
+\hrule
 
 \tableofcontents
 
-\newpage 
+\vspace{2em}
+\hrule
+\vspace{0.5cm}
 
 \setlength{\parskip}{0.2em}
 
@@ -88,7 +87,7 @@
   the proposed methods.
 \end{itemize}
 
-%\newpage
+\newpage
 \setcounter{section}{0}
 
 \section{Submission Material}
@@ -98,9 +97,9 @@ Please prepare your (code) submission as follows:
 \subsection{Code and Data}
 
 \begin{itemize}
-\item The code {must} be well documented.
-\item Each user-defined function (\textsf{Stata}: program) {must} be documented
-  (including all function arguments; \textsf{Stata}: options).
+\item The code {must} be well documented. Each user-defined function
+  (\textsf{Stata}: program) {must} be documented including all function
+  arguments (\textsf{Stata}: options).
 \item Unnecessary comments (such as alternative code lines) {should} be
   avoided.
 \item Please indent for your code properly. Usually 2 or 4 spaces per indention
@@ -109,9 +108,9 @@ Please prepare your (code) submission as follows:
   \item \textsf{R}: If you use RStudio
     (\href{http://www.rstudio.com/products/rstudio/download/}{Download}), proper
     indention can be easily achieved by selecting everything (\texttt{CRTL-A})
-    and then typing \texttt{CTRL-I} (re-indent lines). 
+    and then typing \texttt{CTRL-I} (re-indent lines).
   \item \textsf{Stata}: use tab-indention (which defaults to 4 spaces in the
-    Stata do-file editor).
+    \textsf{Stata} do-file editor).
   \end{itemize}
 \item Try to put the code in as few code files as possible but use separate
   files where useful and sensible, e.g., one for the function definitions, one
@@ -166,10 +165,13 @@ Please prepare your (code) submission as follows:
   that mimics (the main features of) the real data and produces similar results.
 \item Simulations and everything else that relies on random numbers / random
   samples {must} use a seed to make the results reproducible (in \textsf{R} use
-  \texttt{set.seed(...)}; in Stata use \texttt{set seed \#}).
+  \texttt{set.seed(...)}; in \textsf{Stata} use \texttt{set seed \#}).
 \item Make sure that the code can be executed without the need of alterations by
   the user. If user input is really needed, please state and explain this in the
   README.
+\item Before submitting the code make sure that it is executable in a fresh
+  environment. In \textsf{R} first remove all objects from the environment via
+  \texttt{rm(list = ls())} or use \texttt{R CMD BATCH} to start the code.
 \end{itemize}
 
 \subsection{README}
@@ -229,6 +231,8 @@ A special folder for the code might not be necessary. The README should be
 placed in the top level of the zip file (see example above). Make sure that the
 code can be directly executed after unpacking the file without any need to alter
 the code.
+
+\newpage
 
 \section{Submission Process}
 
