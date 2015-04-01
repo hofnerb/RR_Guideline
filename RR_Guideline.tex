@@ -144,8 +144,8 @@ Please prepare your (code) submission as follows:
     relevant path and use this wherever the path is needed or one needs to
     clearly state in the README which path needs to be replaced in which files.
   \end{itemize}
-\item Avoid spaces in file names. Use underscores (\_) or hyphens (-) instead.
-\item Use descriptive file names.
+\item Use descriptive file names and avoid spaces in file names. Use underscores
+  (\_) or hyphens (-) instead.
 \item Each submission {should} contain:
 \begin{itemize}
 \item all the code to reproduce all the results, images and tables. Make sure
@@ -153,7 +153,13 @@ Please prepare your (code) submission as follows:
   finally published paper (and only these). Make also sure the code is well
   documented. This especially includes (but is not restricted to) the
   documentation of user written functions and arguments therein.
-\item all the data to reproduce all the results, images and tables.
+\item all the data to reproduce all the results, images and tables. % Original
+  % data sets and especially huge data sets can also be uploaded to specialized
+  % research data repositories, which often assign DOIs or other persistent
+  % identifiers to the data sets and thus make them citable. For available
+  % repositories see the Registry of Research Data Repositories
+  % (\url{http://www.re3data.org}). A prominent
+  % multidisciplinary repository is Figshare (\url{http://figshare.com}).
 \end{itemize}
 \item If the code needs more time to run (say longer than 2h), consider adding
   intermediate results in a separate folder. Keep the main folder clean so that
@@ -231,6 +237,13 @@ A special folder for the code might not be necessary. The README should be
 placed in the top level of the zip file (see example above). Make sure that the
 code can be directly executed after unpacking the file without any need to alter
 the code.
+
+Please name the zip container as follows:
+\begin{itemize}
+\item If it contains only data: \texttt{Data.zip}
+\item If it contains only Code: \texttt{Code.zip}
+\item If it contains data and code: \texttt{Code\_and\_Data.zip}
+\end{itemize}
 
 \newpage
 
