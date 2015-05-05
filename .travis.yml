@@ -15,4 +15,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: hofnerb/RR_Guideline
-    tags: true
