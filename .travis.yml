@@ -1,17 +1,18 @@
 sudo: required
 
 install:
-  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended 
+  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
 
 script:
-  - pdflatex RR_Guideline.tex
+  - sudo mkdir _build
+  - pdflatex -output-directory _build RR_Guideline.tex
 
 deploy:
   provider: releases
   api_key:
     secure: A9aMNFNpDz8T5tPyBtZf8vOWwtnKYOgJh3zLyn+NbPEbBdrIMClGKw2e++3IM8Hsq6ZmVDlpf+tIWvoo+sz0hmM6IAEfzlaBcJauvYx+aNTO2z4Ye5cUHAe4UWxLV6sVs7GftQFfa/5AsftGvY++/LeCsaI8k/P0RsLnz2knk64=
   file: 
-  - RR_Guideline.pdf
+  - _build/RR_Guideline.pdf
   skip_cleanup: true
   on:
     repo: hofnerb/RR_Guideline
