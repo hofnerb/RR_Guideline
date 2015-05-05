@@ -1,7 +1,7 @@
 sudo: required
 
 install:
-  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra
+  - sudo apt-get install texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-humanities
 
 script:
   - pdflatex RR_Guideline.tex
