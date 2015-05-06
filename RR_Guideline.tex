@@ -16,6 +16,7 @@
 \usepackage[colorlinks=TRUE,urlcolor=blue,citecolor=blue,linkcolor=black]{hyperref}
 \usepackage{multirow}
 \usepackage{natbib}
+\usepackage{fancyvrb}
 
 \usepackage{titlesec}
 
@@ -43,7 +44,7 @@
 \makeatletter
 \renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
   \begin{flushleft}
-    \vspace*{3cm}
+    \vspace*{2cm}
     \textbf{\Large \@title}\\[1em]
 
     \@author\\[0.5em]
@@ -60,7 +61,7 @@
 \author{Benjamin Hofner (RR Editor, Biometrical Journal)\\
   E-mail: \href{mailto:benjamin.hofner@fau.de}{benjamin.hofner@fau.de}}
 
-\date{1.4 (2015/04/xx)}
+\date{1.4 (2015/05/xx)}
 
 \begin{document}
 
@@ -90,11 +91,11 @@
 \newpage
 \setcounter{section}{0}
 
-\section{Submission Material}
+\section{Submission material}
 
 Please prepare your (code) submission as follows:
 
-\subsection{Code and Data}
+\subsection{Code and data}
 
 \begin{itemize}
 \item The code {must} be well documented. Each user-defined function
@@ -139,7 +140,8 @@ Please prepare your (code) submission as follows:
   \item In \textsf{R} and \textsf{Stata} absolute paths are not necessary
     (unless in some very rare occasions). If you really want to set or change
     your working directory do this only once, at the very beginning of your
-    master code file.
+    master code file. For an example that uses relative paths in \textsf{R} see
+    Appendix~\ref{sec:using-relative-paths}.
   \item In \textsf{SAS} one can either define a macro variable that contains the
     relevant path and use this wherever the path is needed or one needs to
     clearly state in the README which path needs to be replaced in which files.
@@ -217,20 +219,20 @@ Please prepare your (code) submission as follows:
   \end{itemize}
 \end{itemize}
 
-\subsection{Structure of Submission (ZIP-folder)}\label{sec:structure}
+\subsection{Structure of submission (ZIP-folder)}\label{sec:structure}
 
 Code, data and the README {must} be contained in a single zip container,
 possibly with sub-folders in the container for different purposes. E.g.\ one
 could have the following structure
 
 \begin{verbatim}
-    README.txt
-    \case_study
-        .\data
-        case_study.R
-    \simulation
-        .\intermediate_results
-        simulation.R
+README.txt
+/case_study
+    ./data
+    case_study.R
+/simulation
+    ./intermediate_results
+    simulation.R
 \end{verbatim}
 
 A special folder for the code might not be necessary. The README should be
@@ -247,7 +249,7 @@ Please name the zip container as follows:
 
 \newpage
 
-\section{Submission Process}
+\section{Submission process}
 
 Please use the appropriate mode of submission:
 
@@ -307,7 +309,7 @@ To further simplify and enhance reproducibility of results, submissions using
 approaches to combine \LaTeX and \textsf{R} code such as
 \href{http://en.wikipedia.org/wiki/Sweave}{Sweave}
 \citep{Leisch:2002,Leisch:2003}/
-\href{http://en.wikipedia.org/wiki/Knitr}{knitr} \citep{Xie:2013,Xie:2014}/...
+\href{http://en.wikipedia.org/wiki/Knitr}{knitr} \citep{Xie:2013,Xie:2014}/\ldots
 are encouraged. Please also supply an \textsf{R} code file in that case. For
 \textsf{SAS} and \textsf{Stata} there exists a similar package for dynamic
 documents called
@@ -322,6 +324,54 @@ necessarily has to be, hosted on \href{http://cran.r-project.org/}{CRAN} or
 
 \bibliographystyle{plain}
 \bibliography{bib}
+
+\clearpage
+\appendix
+\section{Using relative paths in R}
+\label{sec:using-relative-paths}
+
+Normally, you can assume that the working directory is the folder that contains
+the master code file. Now, one can navigate relative to this directory. Assume
+the following (unnecessarily complex) structure:
+
+\begin{verbatim}
+/data/dataset.Rda
+/code/case_study.R
+/code/functions/fun_dev.R
+/results/
+\end{verbatim}    
+
+We assume that the working directory is the folder of the master source
+file, i.e., \texttt{code}. Now, we want to load the function definitions
+\texttt{fun\_def.R} into the master file \texttt{case\_study.R}, load the
+data set and save the results in the \texttt{results} folder. The code in
+\texttt{case\_study.R} looks as follows:
+
+\begin{Verbatim}[frame=single]
+######################################################################
+## This an example with pseudo code to show the use of relative paths
+######################################################################
+
+## make sure the current working directory is the folder code/
+
+## now source the function definitions:
+source("functions/fun_dev.R")
+
+## load the data 
+load("../data/dataset.Rda")
+## ../ means to go up one directory level, 
+## ../../ would mean to go up two levels etc.
+
+## do something with the data
+
+## save the results to results/...
+pdf("../results/figure1.pdf")
+plot(...)
+dev.off()
+
+write.csv(some_results, file = "../results/table1.csv")
+\end{Verbatim}  
+
 
 \end{document}
 
