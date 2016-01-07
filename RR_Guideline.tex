@@ -44,13 +44,13 @@
 \makeatletter
 \renewcommand{\maketitle}{\bgroup\setlength{\parindent}{0pt}
   \begin{flushleft}
-    \vspace*{2cm}
+    \vspace*{0cm}
     \textbf{\Large \@title}\\[1em]
 
     \@author\\[0.5em]
 
     \textbf{Document Version:} \@date
-    \vspace{2em}
+    \vspace{1em}
   \end{flushleft}\egroup
 }
 \makeatother
@@ -68,10 +68,10 @@
 \maketitle
 
 \hrule
-
+\vspace{-0.7em}
 \tableofcontents
 
-\vspace{2em}
+\vspace{1em}
 \hrule
 \vspace{0.5cm}
 
@@ -87,6 +87,11 @@
 \item Code facilitates communication with other researches who intend to apply
   the proposed methods.
 \end{itemize}
+
+For more information on reproducible research, a review of the RR policy of the
+Biometrical Journal and its impact, and on the RR guideline with background
+information we refer to Hofner \emph{et al.} \cite{Hofner:2015}.
+
 
 \newpage
 \setcounter{section}{0}
